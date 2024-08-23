@@ -52,3 +52,397 @@ public class Main {
     }
 }
 
+Q4
+public abstract class Shape {
+	double length;
+	double breadth;
+	
+	Scanner sc = new Scanner(System.in);
+	public Shape() {
+		
+	}
+
+	public Shape(double length, double breadth) {
+		
+		this.length = length;
+		this.breadth = breadth;
+	}
+	public void accept() {
+		System.out.println("Enter length of " + this.getClass().getSimpleName());
+		this.length = sc.nextDouble();
+		
+		System.out.println("Enter breadth of " + this.getClass().getSimpleName());
+		this.breadth = sc.nextDouble();
+		
+	}
+	
+	public void display() {
+		System.out.println("Lenth : " + this.length );
+		System.out.println("Breadth : " + this.breadth);
+	}
+	
+	public abstract int computeArea();
+
+}
+public class Rectangle extends Shape{
+
+	public Rectangle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Rectangle(double length, double breadth) {
+		super(length, breadth);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void accept() {
+		// TODO Auto-generated method stub
+		super.accept();
+	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		super.display();
+	}
+
+	@Override
+	public double computeArea() {
+		double area = length * breadth;
+		System.out.println("Area = " + area);
+		return area;
+	}
+	
+	
+
+}
+public class Triangle extends Shape {
+
+	public Triangle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Triangle(double length, double breadth) {
+		super(length, breadth);
+		
+	}
+
+	@Override
+	public void accept() {
+		// TODO Auto-generated method stub
+		super.accept();
+	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		super.display();
+	}
+
+	@Override
+	public double computeArea() {
+		double area = (0.5) * (length * breadth);
+		System.out.println("Area of Traingle : " + area);
+		return area;
+	}
+	
+}
+public class Main {
+
+	public static void main(String[] args) {
+       Rectangle r = new Rectangle();
+       r.accept();
+       r.computeArea();
+	}
+
+}
+
+Q5
+class BankAccount {
+    protected double balance;
+
+    public BankAccount(double initialBalance) {
+        if (initialBalance >= 0) {
+            this.balance = initialBalance;
+        } else {
+            System.out.println("Initial balance cannot be negative.");
+            this.balance = 0;
+        }
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: $" + amount);
+        } else {
+            System.out.println("Deposit amount must be positive.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrew: $" + amount);
+        } else {
+            System.out.println("Withdrawal amount must be positive and cannot exceed the balance.");
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+class SavingsAccount extends BankAccount {
+
+    public SavingsAccount(double initialBalance) {
+        super(initialBalance);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (balance - amount < 100) {
+            System.out.println("Cannot withdraw: Balance would fall below $100.");
+        } else {
+            super.withdraw(amount);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SavingsAccount mySavings = new SavingsAccount(500);
+        
+        mySavings.deposit(200);
+        System.out.println("Current Balance: $" + mySavings.getBalance());
+        
+        mySavings.withdraw(600);
+        System.out.println("Current Balance: $" + mySavings.getBalance());
+
+        mySavings.withdraw(50);
+        System.out.println("Current Balance: $" + mySavings.getBalance());
+    }
+}
+Q6
+class Person {
+    protected String firstName;
+    protected String lastName;
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+}
+
+class Employee extends Person {
+    private String jobTitle;
+    private int employeeId;
+
+    public Employee(String firstName, String lastName, String jobTitle, int employeeId) {
+        super(firstName, lastName);
+        this.jobTitle = jobTitle;
+        this.employeeId = employeeId;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    @Override
+    public String getFirstName() {
+        return jobTitle + " " + firstName;
+    }
+
+    @Override
+    public String getLastName() {
+        return jobTitle + " " + lastName;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person("John", "Doe");
+        System.out.println("Person's First Name: " + person.getFirstName());
+        System.out.println("Person's Last Name: " + person.getLastName());
+
+        Employee employee = new Employee("Jane", "Smith", "Manager", 12345);
+        System.out.println("Employee's First Name: " + employee.getFirstName());
+        System.out.println("Employee's Last Name: " + employee.getLastName());
+        System.out.println("Employee ID: " + employee.getEmployeeId());
+    }
+}
+Q7
+public abstract class Shape {
+	double length;
+	double breadth;
+	
+	Scanner sc = new Scanner(System.in);
+	public Shape() {
+		
+	}
+
+	public Shape(double length, double breadth) {
+		
+		this.length = length;
+		this.breadth = breadth;
+	}
+	public void accept() {
+		System.out.println("Enter length of " + this.getClass().getSimpleName());
+		this.length = sc.nextDouble();
+		
+		System.out.println("Enter breadth of " + this.getClass().getSimpleName());
+		this.breadth = sc.nextDouble();
+		
+	}
+	
+	public void display() {
+		System.out.println("Lenth : " + this.length );
+		System.out.println("Breadth : " + this.breadth);
+	}
+	
+	public abstract int computeArea();
+
+}
+public class Rectangle extends Shape{
+
+	public Rectangle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Rectangle(double length, double breadth) {
+		super(length, breadth);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void accept() {
+		// TODO Auto-generated method stub
+		super.accept();
+	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		super.display();
+	}
+
+	@Override
+	public double computeArea() {
+		double area = length * breadth;
+		System.out.println("Area = " + area);
+		return area;
+	}
+	
+	
+
+}
+public class Triangle extends Shape {
+
+	public Triangle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Triangle(double length, double breadth) {
+		super(length, breadth);
+		
+	}
+
+	@Override
+	public void accept() {
+		// TODO Auto-generated method stub
+		super.accept();
+	}
+
+	@Override
+	public void display() {
+		// TODO Auto-generated method stub
+		super.display();
+	}
+
+	@Override
+	public double computeArea() {
+		double area = (0.5) * (length * breadth);
+		System.out.println("Area of Traingle : " + area);
+		return area;
+	}
+	
+}
+public class Main {
+
+	public static void main(String[] args) {
+       Rectangle r = new Rectangle();
+       r.accept();
+       r.computeArea();
+	}
+
+}
+Q8
+class Person {
+    protected String firstName;
+    protected String lastName;
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+}
+
+class Employee extends Person {
+    private String jobTitle;
+    private int employeeId;
+
+    public Employee(String firstName, String lastName, String jobTitle, int employeeId) {
+        super(firstName, lastName);
+        this.jobTitle = jobTitle;
+        this.employeeId = employeeId;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    @Override
+    public String getFirstName() {
+        return jobTitle + " " + firstName;
+    }
+
+    @Override
+    public String getLastName() {
+        return jobTitle + " " + lastName;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person person = new Person("John", "Doe");
+        System.out.println("Person's First Name: " + person.getFirstName());
+        System.out.println("Person's Last Name: " + person.getLastName());
+
+        Employee employee = new Employee("Jane", "Smith", "Manager", 12345);
+        System.out.println("Employee's First Name: " + employee.getFirstName());
+        System.out.println("Employee's Last Name: " + employee.getLastName());
+        System.out.println("Employee ID: " + employee.getEmployeeId());
+    }
+}
+
