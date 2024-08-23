@@ -1,0 +1,54 @@
+Q3
+class Employee {
+    private String name;
+    private double salary;
+
+    // Constructor
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // Method to get the salary
+    public double getSalary() {
+        return salary;
+    }
+
+    // Method to represent the work done by the employee
+    public void work() {
+        System.out.println(name + " is working.");
+    }
+}
+
+// Subclass HR that extends Employee
+class HR extends Employee {
+
+    // Constructor
+    public HR(String name, double salary) {
+        super(name, salary);
+    }
+
+    // Overriding the work method
+    @Override
+    public void work() {
+        System.out.println("HR is managing employee relations.");
+    }
+
+    // New method to add an employee
+    public void addEmployee(Employee employee) {
+        System.out.println("Employee " + employee.getSalary() + " added.");
+    }
+}
+
+// Main class to test the implementation
+public class Main {
+    public static void main(String[] args) {
+        Employee emp = new Employee("John", 50000);
+        emp.work();  // Output: John is working.
+
+        HR hr = new HR("Alice", 60000);
+        hr.work();  // Output: HR is managing employee relations.
+        hr.addEmployee(emp);  // Output: Employee 50000.0 added.
+    }
+}
+
